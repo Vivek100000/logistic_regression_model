@@ -1,0 +1,15 @@
+rfc = RandomForestClassifier(random_state=42)
+param_grid = {
+    'n_estimators':[200, 500],
+    'max_features':['auto', 'sqrt', 'log2'],
+    'max_depth':[4,5,6,7,8],
+    'criterion':['gini','entropy']
+    }
+
+# Build the grid search
+
+grid = GridSearchCV(estimator=rfc, param_grid=param_grid, cv = 5)
+grid.fit(x_train, y_train)
+
+# Summarize the results in a readable format
+grid.best_params_
